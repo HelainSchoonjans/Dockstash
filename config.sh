@@ -14,6 +14,7 @@ echo "input {
 		mode => \"${LOG4J_MODE:-server}\" # string, one of [\"server\", \"client\"] (optional), default: \"server\"
 		port => ${LOG4J_PORT:-4560} # number (optional), default: 4560
 	}
+}
 output {
     rabbitmq {
 		codec => \"${RABBITMQ_CODEC:-plain}\" # codec (optional), default: \"plain\"
@@ -31,7 +32,7 @@ output {
 		vhost => \"${RABBITMQ_VHOST:-/}\" # string (optional), default: \"/\"
 		workers => ${RABBITMQ_WORKERS:-1} # number (optional), default: 1
 	}
-  stdout {}
+	stdout {}
 }" > log4j-rabbitmq.conf
 echo "Success!"
 
@@ -47,7 +48,7 @@ echo "input {
     exchange => \"${RABBITMQ_EXCHANGE:-logs}\" # string (optional)
     exclusive => ${RABBITMQ_EXCLUSIVE:-false} # boolean (optional), default: false
     host => 		\"${RABBITMQ_HOST:-localhost}\" # string (required)
-    key => 			\"${RABBITMQ_KEY:-logstash\" # string (optional), default: \"logstash\"
+    key => 			\"${RABBITMQ_KEY:-logstash}\" # string (optional), default: \"logstash\"
     passive => 		${RABBITMQ_PASSIVE:-false} # boolean (optional), default: false
     password => 	\"${RABBITMQ_PASSWORD:-guest}\" # password (optional), default: \"guest\"
     port => 		${RABBITMQ_PORT:-5672} # number (optional), default: 5672
