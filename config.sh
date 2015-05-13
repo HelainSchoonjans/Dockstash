@@ -20,7 +20,7 @@ output {
 		codec => \"${RABBITMQ_CODEC:-plain}\" # codec (optional), default: \"plain\"
 		durable => ${RABBITMQ_DURABLE:-true} # boolean (optional), default: true
 		exchange => \"${RABBITMQ_EXCHANGE:-test_exchange}\" # string (required)
-		exchange_type => \"${RABBITMQ_EXCHANGE_TYPE:-fanout}\" # string, one of [\"fanout\", \"direct\", \"topic\"] (required)
+		exchange_type => \"${RABBITMQ_EXCHANGE_TYPE:-direct}\" # string, one of [\"fanout\", \"direct\", \"topic\"] (required)
 		host => \"${RABBITMQ_HOST:-localhost}\" # string (required)
 		key => \"${RABBITMQ_KEY:-logstash}\" # string (optional), default: \"logstash\"
 		password => \"${RABBITMQ_PASSWORD:-guest}\" # password (optional), default: \"guest\"
@@ -32,7 +32,6 @@ output {
 		vhost => \"${RABBITMQ_VHOST:-/}\" # string (optional), default: \"/\"
 		workers => ${RABBITMQ_WORKERS:-1} # number (optional), default: 1
 	}
-	stdout {}
 }" > log4j-rabbitmq.conf
 echo "Success!"
 
@@ -82,6 +81,5 @@ output {
     user => \"${ELASTICSEARCH_USER:-nil}\" # string (optional), default: nil
     workers => ${ELASTICSEARCH_WORKERS:-1} # number (optional), default: 1
   }
-  stdout {}
 }" > rabbitmq-elastic.conf
 echo "Success!"
