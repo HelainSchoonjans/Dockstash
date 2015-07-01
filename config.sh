@@ -63,7 +63,7 @@ echo "input {
   }
 }
 output {
-  elasticsearch_http {
+  elasticsearch {
     codec => \"${ELASTICSEARCH_CODEC:-plain}\" # codec (optional), default: \"plain\"
     document_id => \"${ELASTICSEARCH_DOCUMENT_ID:-nil}\" # string (optional), default: nil
     flush_size => ${ELASTICSEARCH_FLUSH_SIZE:-100} # number (optional), default: 100
@@ -74,6 +74,7 @@ output {
     manage_template => ${ELASTICSEARCH_MANAGE_TEMPLATE:-true} # boolean (optional), default: true
     password => \"${ELASTICSEARCH_PASSWORD:-nil}\" # password (optional), default: nil
     port => ${ELASTICSEARCH_PORT:-9200} # number (optional), default: 9200
+    protocol => \"${ELASTICSEARCH_PROTOCOL:-node}\" # string, one of [\"node\", \"transport\", \"http\"] (optional)
     replication => \"${ELASTICSEARCH_REPLICATION:-sync}\" # string, one of [\"async\", \"sync\"] (optional), default: \"sync\"
     #template => ${ELASTICSEARCH_TEMPLATE:-plain} # a valid filesystem path (optional)
     template_name => \"${ELASTICSEARCH_TEMPLATE_NAME:-logstash}\" # string (optional), default: \"logstash\"
