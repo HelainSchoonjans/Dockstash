@@ -70,7 +70,7 @@ output {
     host => \"${ELASTICSEARCH_HOST:-localhost}\" # string (required)
     idle_flush_time => ${ELASTICSEARCH_IDLE_FLUSH_TIME:-1} # number (optional), default: 1
     index => \"${ELASTICSEARCH_INDEX:-logstash-%{+YYYY.MM.dd}}\" # string (optional), default: \"logstash-%{+YYYY.MM.dd}\"
-    index_type => \"${ELASTICSEARCH_INDEX_TYPE:-log}\" # string (optional)
+    document_type => \"${ELASTICSEARCH_INDEX_TYPE:-log}\" # string (optional)
     manage_template => ${ELASTICSEARCH_MANAGE_TEMPLATE:-true} # boolean (optional), default: true
     password => \"${ELASTICSEARCH_PASSWORD:-nil}\" # password (optional), default: nil
     port => ${ELASTICSEARCH_PORT:-9200} # number (optional), default: 9200
