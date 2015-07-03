@@ -21,7 +21,7 @@ You can add the --configtest flag to the logstash command to check if the config
 
 Since there is a default command, you can just use:
 
-```docker run -e "TYPE=$TYPE" -d --name my_dockstash dockstash"```
+```docker run -e "TYPE=$TYPE" -d --name my_dockstash dockstash```
 
 The environment variables can be passed as in the example:
 With the environment variables you should have something like:
