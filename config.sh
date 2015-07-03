@@ -49,11 +49,9 @@ then
 		}
 	}" > config.conf
 	echo "Success!"
-fi
-
-if [ "$TYPE" == "rabbitmq-elastic" ]
+elif [ "$TYPE" == "rabbitmq-elastic" ]
 then
-	echo "Generating the rabbitMQ Logstash configuration file:"
+	echo "Generating the rabbitMQ-Elastic Logstash configuration file:"
 	
 	if [ $RABBITMQ_EXCHANGE ]
 	then
@@ -113,4 +111,5 @@ then
 	  }
 	}" > config.conf
 	echo "Success!"
+else echo "Failure: TYPE environment variable is empty."
 fi
