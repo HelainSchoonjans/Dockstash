@@ -35,6 +35,16 @@ output {
 }" > log4j-rabbitmq.conf
 echo "Success!"
 
+if [ $RABBITMQ_EXCHANGE ]
+then
+  EXCHANGE="exchange => \"${RABBITMQ_EXCHANGE}\" # string (optional)"
+fi
+
+if [ $RABBITMQ_TYPE ]
+then
+  TYPE="type => \"${RABBITMQ_TYPE} \" # string (optional)"
+fi
+
 echo "Generating the rabbitMQ Logstash configuration file:"
 echo "input {
   rabbitmq {
@@ -44,7 +54,7 @@ echo "input {
     auto_delete => ${RABBITMQ_DELETE:-false} # boolean (optional), default: false
     codec => \"${RABBITMQ_CODEC:-plain}\" # codec (optional), default: \"plain\"
     durable => ${RABBITMQ_DURABLE:-false} # boolean (optional), default: false
-    exchange => \"${RABBITMQ_EXCHANGE:-logs}\" # string (optional)
+    ${EXCHANGE:-# no exchange}
     exclusive => ${RABBITMQ_EXCLUSIVE:-false} # boolean (optional), default: false
     host => 		\"${RABBITMQ_HOST:-localhost}\" # string (required)
     key => 			\"${RABBITMQ_KEY:-logstash}\" # string (optional), default: \"logstash\"
@@ -56,7 +66,7 @@ echo "input {
     ssl => 			${RABBITMQ_SSL:-false} # boolean (optional), default: false
     tags => 		${RABBITMQ_TAGS:-[]} # array (optional)
     threads => 		${RABBITMQ_THREADS:-1} # number (optional), default: 1
-    #type => 		\"${RABBITMQ_TYPE:-plain}\" # string (optional)
+    ${TYPE:-# no type}
     user => 		\"${RABBITMQ_USER:-guest}\" # string (optional), default: \"guest\"
     verify_ssl => 	${RABBITMQ_VERIFY_SSL:-false} # boolean (optional), default: false
     vhost => 		\"${RABBITMQ_VHOST:-/}\" # string (optional), default: \"/\"
