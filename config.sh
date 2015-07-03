@@ -66,33 +66,34 @@ echo "input {
     auto_delete => ${RABBITMQ_DELETE:-false} # boolean (optional), default: false
     codec => \"${RABBITMQ_CODEC:-plain}\" # codec (optional), default: \"plain\"
     durable => ${RABBITMQ_DURABLE:-false} # boolean (optional), default: false
-    ${RABBITMQ_TEMP_EXCHANGE:-# no exchange}
+	${RABBITMQ_TEMP_EXCHANGE:-# no exchange}
     exclusive => ${RABBITMQ_EXCLUSIVE:-false} # boolean (optional), default: false
-    host =>  \"${RABBITMQ_HOST:-localhost}\" # string (required)
-    key =>  \"${RABBITMQ_KEY:-logstash}\" # string (optional), default: \"logstash\"
-    passive => 	 ${RABBITMQ_PASSIVE:-false} # boolean (optional), default: false
-    password =>  \"${RABBITMQ_PASSWORD:-guest}\" # password (optional), default: \"guest\"
-    port => ${RABBITMQ_PORT:-5672} # number (optional), default: 5672
-    prefetch_count => ${RABBITMQ_PREFETCH_COUNT:-256} # number (optional), default: 256
-    queue => \"${RABBITMQ_QUEUE:-test_queue}\" # string (optional), default: \"\"
-    ssl => ${RABBITMQ_SSL:-false} # boolean (optional), default: false
-    tags => ${RABBITMQ_TAGS:-[]} # array (optional)
-    threads => ${RABBITMQ_THREADS:-1} # number (optional), default: 1
+    host => 		\"${RABBITMQ_HOST:-localhost}\" # string (required)
+    key => 		\"${RABBITMQ_KEY:-logstash}\" # string (optional), default: \"logstash\"
+    passive => 		${RABBITMQ_PASSIVE:-false} # boolean (optional), default: false
+    password => 	\"${RABBITMQ_PASSWORD:-guest}\" # password (optional), default: \"guest\"
+    port => 		${RABBITMQ_PORT:-5672} # number (optional), default: 5672
+    prefetch_count => 	${RABBITMQ_PREFETCH_COUNT:-256} # number (optional), default: 256
+    queue => 		\"${RABBITMQ_QUEUE:-test_queue}\" # string (optional), default: \"\"
+    ssl => 		${RABBITMQ_SSL:-false} # boolean (optional), default: false
+    tags => 		${RABBITMQ_TAGS:-[]} # array (optional)
+    threads => 		${RABBITMQ_THREADS:-1} # number (optional), default: 1
     ${RABBITMQ_TEMP_TYPE:-# no type}
-    user => \"${RABBITMQ_USER:-guest}\" # string (optional), default: \"guest\"
-    verify_ssl => ${RABBITMQ_VERIFY_SSL:-false} # boolean (optional), default: false
-    vhost => \"${RABBITMQ_VHOST:-/}\" # string (optional), default: \"/\"
+    user => 		\"${RABBITMQ_USER:-guest}\" # string (optional), default: \"guest\"
+    verify_ssl => 	${RABBITMQ_VERIFY_SSL:-false} # boolean (optional), default: false
+    vhost => 		\"${RABBITMQ_VHOST:-/}\" # string (optional), default: \"/\"
   }
 }
 output {
-    elasticsearch {
+  elasticsearch {
+	action => \"${ELASTICSEARCH_ACTION:-index}\" # string (optional), default: index
     codec => \"${ELASTICSEARCH_CODEC:-plain}\" # codec (optional), default: \"plain\"
     document_id => \"${ELASTICSEARCH_DOCUMENT_ID:-nil}\" # string (optional), default: nil
     flush_size => ${ELASTICSEARCH_FLUSH_SIZE:-100} # number (optional), default: 100
     host => \"${ELASTICSEARCH_HOST:-localhost}\" # string (required)
     idle_flush_time => ${ELASTICSEARCH_IDLE_FLUSH_TIME:-1} # number (optional), default: 1
     index => \"${ELASTICSEARCH_INDEX:-logstash-%{+YYYY.MM.dd}}\" # string (optional), default: \"logstash-%{+YYYY.MM.dd}\"
-    document_type => \"${ELASTICSEARCH_DOCUMENT_TYPE:-log}\" # string (optional)
+    index_type => \"${ELASTICSEARCH_DOCUMENT_TYPE:-log}\" # string (optional)
     manage_template => ${ELASTICSEARCH_MANAGE_TEMPLATE:-true} # boolean (optional), default: true
     password => \"${ELASTICSEARCH_PASSWORD:-nil}\" # password (optional), default: nil
     port => ${ELASTICSEARCH_PORT:-9200} # number (optional), default: 9200
@@ -105,4 +106,3 @@ output {
   }
 }" > rabbitmq-elastic.conf
 echo "Success!"
-
